@@ -1,0 +1,3791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Motors - Auto Parts & Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: #ff6600;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff6600;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* WhatsApp Banner */
+        .whatsapp-banner {
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .whatsapp-banner a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .whatsapp-banner .close-banner {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Home Page Styles */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: #ff6600;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e55a00;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+
+        .products {
+            padding: 4rem 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-to-cart {
+            background-color: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #333;
+        }
+
+        .like-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .like-button:hover, .like-button.liked {
+            color: #ff6b6b;
+        }
+
+        .services {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff6600;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        /* PAYMENT PAGE STYLES */
+        .payment-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .payment-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .payment-main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .payment-main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .payment-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8eaf6;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .method {
+            border: 2px solid #e8eaf6;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .method:hover {
+            border-color: #5c6bc0;
+            transform: translateY(-3px);
+        }
+
+        .method.active {
+            border-color: #1a237e;
+            background-color: #e8eaf6;
+        }
+
+        .method-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #3f51b5;
+        }
+
+        .method-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .card-display {
+            background: linear-gradient(135deg, #3f51b5 0%, #283593 100%);
+            border-radius: 12px;
+            padding: 25px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(63, 81, 181, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .card-display::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .card-chip {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #ffcc80 0%, #ffb74d 100%);
+            border-radius: 8px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-number {
+            font-size: 22px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cardholder-name {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .expiry-date {
+            font-size: 16px;
+        }
+
+        .payment-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #424242;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #3f51b5;
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .instructions {
+            background-color: #f3f4f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 4px solid #3f51b5;
+        }
+
+        .instructions-title {
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .mobile-payment-info {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .mobile-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1b5e20;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .payment-submit-btn {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.2);
+        }
+
+        .payment-submit-btn:hover {
+            background: linear-gradient(135deg, #283593 0%, #1a237e 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(26, 35, 126, 0.3);
+        }
+
+        .payment-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .payment-summary {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            align-self: start;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .summary-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a237e;
+            margin-top: 10px;
+        }
+
+        .integration-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff8e1;
+            border-radius: 8px;
+            border-left: 4px solid #ffb300;
+        }
+
+        .integration-info h3 {
+            color: #ff6f00;
+            margin-bottom: 10px;
+        }
+
+        .integration-info ul {
+            padding-left: 20px;
+        }
+
+        .integration-info li {
+            margin-bottom: 8px;
+        }
+
+        .payment-success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .payment-success-icon {
+            font-size: 60px;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        .payment-success-message h2 {
+            color: #1b5e20;
+            margin-bottom: 15px;
+        }
+
+        .payment-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .secure-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #4caf50;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+
+        /* About Page Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .about-content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .about-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .about-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: #ff6600;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .director-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .director-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 5px solid #ff6600;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: #ff6600;
+            margin-right: 1.5rem;
+            min-width: 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .benefit-check {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .commitment-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .commitment-section h2 {
+            color: #ff6600;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Feedback Page Styles */
+        .feedback-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .feedback-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .feedback-content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .contact-form p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6600;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .rating-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .rating-stars input:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: #ffd700;
+        }
+
+        .website-rating {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .website-rating h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .website-rating-stars {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .website-rating p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .submit-btn {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #e55a00;
+        }
+
+        .contact-info {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #ff6600;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            min-width: 24px;
+        }
+
+        .contact-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+
+        .contact-text p {
+            color: #666;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #ff6600;
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 200px;
+            background-color: #e9e9e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        /* Profile Page Styles */
+        .profile-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .profile-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .profile-content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .registration-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration-form h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .registration-form p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+
+        .user-profile {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .user-profile h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ff6600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .user-details {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .user-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-detail:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .detail-value {
+            color: #666;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .profile-btn {
+            background-color: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .profile-btn:hover {
+            background-color: #333;
+        }
+
+        .profile-btn.edit {
+            background-color: #ff6600;
+        }
+
+        .profile-btn.edit:hover {
+            background-color: #e55a00;
+        }
+
+        /* Help Desk Page Styles */
+        .help-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .help-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .help-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+        }
+
+        .help-content {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .help-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .help-intro h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .help-intro p {
+            font-size: 1.1rem;
+            color: #444;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .assistance-section {
+            margin-bottom: 4rem;
+        }
+
+        .assistance-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .assistance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .assistance-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .assistance-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .assistance-icon {
+            font-size: 2.5rem;
+            color: #ff6600;
+            margin-bottom: 1rem;
+        }
+
+        .assistance-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .assistance-card p {
+            color: #666;
+        }
+
+        .contact-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 4rem;
+        }
+
+        .contact-section h2 {
+            color: #ff6600;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #ff6600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #ccc;
+        }
+
+        .response-time {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .response-time h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .response-time p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
+        .faq-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #666;
+            display: none;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            color: #ff6600;
+            font-size: 1.5rem;
+        }
+
+        /* Cart Modal Styles */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h2 {
+            color: #1a1a1a;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .item-price {
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+        }
+
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .quantity {
+            margin: 0 0.5rem;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff3333;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-summary {
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #e55a00;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        /* Registration Success Message */
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Edit Profile Modal */
+        .edit-profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-profile-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .edit-profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .edit-profile-header h2 {
+            color: #1a1a1a;
+        }
+
+        .close-edit {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-content {
+            background-color: white;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 8px;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-header h2 {
+            color: #1a1a1a;
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-tab {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .admin-tab.active {
+            color: #ff6600;
+            border-bottom: 2px solid #ff6600;
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .admin-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .admin-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: #ff6600;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #ff6600;
+        }
+
+        .social-icons-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons-footer a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons-footer a:hover {
+            color: #ff6600;
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1, .payment-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p, .payment-hero p {
+                font-size: 1rem;
+            }
+            
+            .payment-main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cart-content {
+                width: 95%;
+                padding: 1rem;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-quantity {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Banner -->
+    <div class="whatsapp-banner" id="whatsappBanner">
+        <span>Join our WhatsApp channel for updates: </span>
+        <a href="https://chat.whatsapp.com/I0a9YRBvvUGHFOEUSvvUuJ" target="_blank">https://chat.whatsapp.com/I0a9YRBvvUGHFOEUSvvUuJ</a>
+        <button class="close-banner" id="closeBanner">&times;</button>
+    </div>
+
+    <header>
+        <div class="logo">JM MOTORS</div>
+        <nav>
+            <ul>
+                <li><a onclick="showPage('home')">HOME</a></li>
+                <li><a onclick="showPage('profile')">PROFILE</a></li>
+                <li><a onclick="showPage('about')">ABOUT</a></li>
+                <li class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </li>
+                <li><a onclick="showPage('payment')">PAYMENT</a></li>
+                <li><a onclick="showPage('feedback')">FEED BACK</a></li>
+                <li><a onclick="showPage('help')">HELP DESK</a></li>
+                <li><a onclick="openAdminPanel()">ADMIN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+        <section class="hero">
+            <h1>Professional Auto Parts & Services</h1>
+            <p>Your trusted partner for all automotive needs. From routine maintenance to complex repairs, we've got you covered.</p>
+            <button class="btn" onclick="joinWhatsAppGroup()">SHOP NOW</button>
+            <button class="whatsapp-btn" onclick="joinWhatsAppChannel()">
+                <i class="fab fa-whatsapp"></i> Join Our WhatsApp Channel
+            </button>
+        </section>
+
+        <section class="products" id="products">
+            <h2>Premium Auto Parts</h2>
+            <div class="products-grid">
+                <!-- Brake Components -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic1.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Brake Components</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Brake Components</h3>
+                        <p>High-quality brake pads, discs, calipers and rotors for optimal stopping power and safety.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="1" data-name="Premium Brake Components">ADD TO CART</button>
+                            <button class="like-button" data-id="1"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tyres -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic2.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Tyres</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>All-Season & Performance Tyres</h3>
+                        <p>Premium tyres for all weather conditions. Various sizes available for cars, SUVs and trucks.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="2" data-name="All-Season Tyres">ADD TO CART</button>
+                            <button class="like-button" data-id="2"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suspension Parts -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic3.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Suspension Parts</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Suspension & Steering Components</h3>
+                        <p>Shock absorbers, struts, springs and steering components for smooth ride and control.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="3" data-name="Suspension Components">ADD TO CART</button>
+                            <button class="like-button" data-id="3"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engine Filters & Service Kits -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic4.jpg');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Engine Filters</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Engine Filters & Service Kits</h3>
+                        <p>Air filters, oil filters, fuel filters and complete service kits for optimal engine performance.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="4" data-name="Engine Filters & Service Kits">ADD TO CART</button>
+                            <button class="like-button" data-id="4"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lubricants / Oils -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic5.avif');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Lubricants & Oils</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Lubricants & Engine Oils</h3>
+                        <p>High-performance engine oils, transmission fluids, and specialty lubricants for all vehicles.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="5" data-name="Premium Lubricants & Oils">ADD TO CART</button>
+                            <button class="like-button" data-id="5"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engine Parts -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic6.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Engine Parts</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Complete Engine Components</h3>
+                        <p>Gaskets, belts, pumps, sensors and other essential engine parts for maintenance and repair.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="6" data-name="Engine Components">ADD TO CART</button>
+                            <button class="like-button" data-id="6"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Body Parts / Panels -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic7.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Body Parts</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Body Parts & Panels</h3>
+                        <p>Bumpers, fenders, doors, mirrors and other body components for repair and restoration.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="7" data-name="Body Parts & Panels">ADD TO CART</button>
+                            <button class="like-button" data-id="7"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transmission & Steering Parts -->
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('pic8.webp');">
+                        <h3 style="z-index: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Transmission Parts</h3>
+                    </div>
+                    <div class="product-info">
+                        <h3>Transmission & Steering Parts</h3>
+                        <p>Clutch kits, gearbox components, power steering pumps and related parts for smooth operation.</p>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="8" data-name="Transmission & Steering Parts">ADD TO CART</button>
+                            <button class="like-button" data-id="8"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>1. Engine Overhaul</h3>
+                    <p>Complete engine disassembly, inspection, and rebuilding to restore performance and reliability.</p>
+                </div>
+                <div class="service-card">
+                    <h3>2. Diagnostics</h3>
+                    <p>Advanced computer diagnostics to identify issues quickly and accurately.</p>
+                </div>
+                <div class="service-card">
+                    <h3>3. Suspension Services</h3>
+                    <p>Comprehensive suspension system inspection, repair, and alignment services.</p>
+                </div>
+                <div class="service-card">
+                    <h3>4. Brake and Clutch Services</h3>
+                    <p>Complete brake system inspection, repair, and replacement services for your safety.</p>
+                </div>
+                <div class="service-card">
+                    <h3>5. Oil Change Services</h3>
+                    <p>Regular oil changes with premium lubricants to keep your engine running smoothly.</p>
+                </div>
+                <div class="service-card">
+                    <h3>6. Respraying</h3>
+                    <p>Professional auto body painting and respraying services to restore your vehicle's appearance.</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page-section">
+        <section class="about-hero">
+            <h1>About JM Motors</h1>
+            <p>Your trusted automotive partner, delivering excellence in auto services and parts since 2010</p>
+        </section>
+
+        <section class="about-content">
+            <div class="about-section">
+                <h2>Who We Are</h2>
+                <p>JM Motors is a trusted automotive service and spare parts provider dedicated to keeping your vehicle running safely, efficiently, and reliably. With a passion for engineering excellence and customer satisfaction, we supply high-quality car parts and offer professional repair services for all vehicle makes and models.</p>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">13+</div>
+                        <div class="stat-label">Years of Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15,000+</div>
+                        <div class="stat-label">Vehicles Serviced</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Customer Satisfaction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Directors</h2>
+                <p>JM Motors is led by a team of experienced professionals dedicated to automotive excellence:</p>
+                
+                <div class="values-grid">
+                    <div class="director-profile">
+                        <img src="tanaka.jpg" alt="Tanaka Sithole" class="director-photo">
+                        <h3>Tanaka Lottie Sithole</h3>
+                        <p>Director of Operations with over 15 years of experience in automotive industry management.</p>
+                    </div>
+                    <div class="director-profile">
+                        <img src="james.jpg" alt="James Mulauzi" class="director-photo">
+                        <h3>James Mulauzi</h3>
+                        <p>Founder & Managing Director with expertise in automotive engineering and business development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>Our mission is to provide reliable automotive solutions with honesty, transparency, and exceptional technical expertise. We aim to deliver fast service, genuine parts, and quality repairs you can depend on.</p>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Honesty</h3>
+                        <p>We believe in transparent service with no hidden costs or surprises.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Quality</h3>
+                        <p>We use only premium parts and follow industry best practices.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Efficiency</h3>
+                        <p>We deliver fast service without compromising on quality.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Expertise</h3>
+                        <p>Our certified technicians stay current with the latest technologies.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2>What We Do</h2>
+                <p>At JM Motors, we offer a full range of automotive services under one roof, including:</p>
+                
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <div>
+                            <h3>Engine Overhaul & Rebuilds</h3>
+                            <p>Complete engine disassembly, inspection, and rebuilding</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div>
+                            <h3>Computer Diagnostics</h3>
+                            <p>Advanced diagnostics to identify issues quickly and accurately</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div>
+                            <h3>Suspension & Steering Repair</h3>
+                            <p>Comprehensive suspension system inspection and repair</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-brake-warning"></i>
+                        </div>
+                        <div>
+                            <h3>Brake & Clutch Services</h3>
+                            <p>Complete brake system inspection, repair, and replacement</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 2rem;">Whether you need a simple oil service or a full engine rebuild, our skilled mechanics ensure every job is done correctly the first time.</p>
+            </div>
+
+            <div class="commitment-section">
+                <h2>Our Commitment to You</h2>
+                <p>Your safety comes first. Every vehicle we work on is inspected carefully and repaired using industry-approved techniques. We stand behind our workmanship and strive to provide long-lasting solutions, not temporary fixes.</p>
+                <p>At JM Motors, we understand that your vehicle is more than just transportation - it's an essential part of your daily life. That's why we treat every repair with the care and attention it deserves.</p>
+            </div>
+
+            <!-- README Section -->
+            <div class="about-section">
+                <h2>Website Documentation</h2>
+                <div class="readme-section">
+                    <h3>JM Motors Website - README</h3>
+                    <p><strong>Version:</strong> 3.0</strong></p>
+                    <p><strong>Last Updated:</strong> November 2023</p>
+                    
+                    <h4>Website Features:</h4>
+                    <ul>
+                        <li>Product catalog with shopping cart functionality</li>
+                        <li>User registration and profile management</li>
+                        <li>Contact forms for feedback and inquiries</li>
+                        <li>Help desk with FAQ section</li>
+                        <li>Integrated payment system with multiple methods</li>
+                        <li>Admin panel for monitoring activities</li>
+                        <li>WhatsApp integration for customer communication</li>
+                    </ul>
+                    
+                    <h4>Payment System Features:</h4>
+                    <ul>
+                        <li>Multiple payment methods: Visa, MasterCard, EcoCash, InnBucks, One Money, PayNow</li>
+                        <li>Secure payment processing with form validation</li>
+                        <li>Visual card display with pre-filled details</li>
+                        <li>All payments directed to: 0786497932</li>
+                        <li>Order creation before payment processing</li>
+                        <li>Payment activities logged to database</li>
+                        <li>Success confirmation with transaction details</li>
+                    </ul>
+                    
+                    <h4>Database Integration:</h4>
+                    <p>The website is connected to a database that records:</p>
+                    <ul>
+                        <li>User registrations and profiles</li>
+                        <li>Product orders and purchases</li>
+                        <li>Payment transactions and details</li>
+                        <li>Customer feedback and messages</li>
+                        <li>All user activities</li>
+                    </ul>
+                    
+                    <h4>Admin Access:</h4>
+                    <p>Admin panel can be accessed through the navigation menu with password authentication.</p>
+                    <p>The admin panel provides access to:</p>
+                    <ul>
+                        <li>User management</li>
+                        <li>Order tracking</li>
+                        <li>Payment monitoring</li>
+                        <li>Feedback monitoring</li>
+                        <li>Activity logs</li>
+                    </ul>
+                    
+                    <h4>Payment Configuration:</h4>
+                    <p>All payments are directed to: <strong>0786497932</strong></p>
+                    <p>Card details for testing: 5321 6213 0655 8499 (10/26, CVV: 639)</p>
+                    <p>Cardholder: JAMES MULAUZI</p>
+                    
+                    <h4>Email Configuration:</h4>
+                    <p>All feedback, orders and payments are sent to: <strong>jamesmulauzi47@gmail.com</strong></p>
+                    
+                    <h4>Technical Details:</h4>
+                    <ul>
+                        <li>Frontend: HTML5, CSS3, JavaScript</li>
+                        <li>Database: MySQL with PHP backend</li>
+                        <li>Responsive design for all devices</li>
+                        <li>Secure user authentication</li>
+                        <li>PCI DSS compliant payment interface</li>
+                    </ul>
+                    
+                    <h4>Contact Information:</h4>
+                    <p>For technical support or website maintenance, contact:</p>
+                    <p><strong>Email:</strong> jamesmulauzi47@gmail.com</p>
+                    <p><strong>Phone:</strong> +26371 227 6577 / +26378 649 7932</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Profile Page -->
+    <section id="profile" class="page-section">
+        <section class="profile-hero">
+            <h1>Your Profile</h1>
+            <p>Manage your account and view your information</p>
+        </section>
+
+        <section class="profile-content">
+            <div class="registration-form">
+                <h2>Create Account</h2>
+                <p>Register to access exclusive features and manage your orders</p>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Registration Successful! You can now log in.
+                </div>
+                
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="checkbox" id="likeProducts" checked>
+                        <label for="likeProducts">I would like to receive product recommendations and like products</label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Register Now</button>
+                </form>
+            </div>
+            
+            <div class="user-profile">
+                <h2>Your Profile</h2>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <div class="user-detail">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value" id="profileName">Not registered</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value" id="profileEmail">Not registered</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value" id="profilePhone">Not registered</span>
+                    </div>
+                    <div class="user-detail">
+                        <span class="detail-label">Member Since:</span>
+                        <span class="detail-value" id="profileDate">Not registered</span>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="profile-btn edit" onclick="openEditProfile()">Edit Profile</button>
+                    <button class="profile-btn" onclick="showPage('home')">View Products</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Payment Page (NEW) -->
+    <section id="payment" class="page-section">
+        <section class="payment-hero">
+            <h1>Secure Payment</h1>
+            <p>Complete your purchase with our secure payment system</p>
+        </section>
+
+        <div class="payment-container">
+            <div class="payment-main-content">
+                <div class="payment-section">
+                    <h2 class="section-title">Select Payment Method</h2>
+                    
+                    <div class="payment-methods">
+                        <div class="method active" data-method="card">
+                            <i class="fab fa-cc-visa method-icon"></i>
+                            <span class="method-name">Visa Card</span>
+                        </div>
+                        <div class="method" data-method="card">
+                            <i class="fab fa-cc-mastercard method-icon"></i>
+                            <span class="method-name">Master Card</span>
+                        </div>
+                        <div class="method" data-method="ecocash">
+                            <i class="fas fa-mobile-alt method-icon"></i>
+                            <span class="method-name">EcoCash</span>
+                        </div>
+                        <div class="method" data-method="innbucks">
+                            <i class="fas fa-wallet method-icon"></i>
+                            <span class="method-name">InnBucks</span>
+                        </div>
+                        <div class="method" data-method="onemoney">
+                            <i class="fas fa-money-bill-wave method-icon"></i>
+                            <span class="method-name">One Money</span>
+                        </div>
+                        <div class="method" data-method="paynow">
+                            <i class="fas fa-qrcode method-icon"></i>
+                            <span class="method-name">PayNow</span>
+                        </div>
+                    </div>
+
+                    <div class="card-display">
+                        <div class="card-chip"></div>
+                        <div class="card-number">5321 6213 0655 8499</div>
+                        <div class="card-details">
+                            <div class="cardholder-name">JAMES MULAUZI</div>
+                            <div class="expiry-date">10/26</div>
+                        </div>
+                    </div>
+
+                    <div class="payment-form">
+                        <h3 class="section-title">Payment Details</h3>
+                        
+                        <div id="card-form">
+                            <div class="form-group">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-input" id="card-number" placeholder="1234 5678 9012 3456" value="5321 6213 0655 8499" maxlength="19">
+                                <div class="error-message" id="card-number-error">Please enter a valid card number</div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-input" id="expiry-date" placeholder="MM/YY" value="10/26" maxlength="5">
+                                    <div class="error-message" id="expiry-error">Please enter a valid expiry date (MM/YY)</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">CVV</label>
+                                    <input type="password" class="form-input" id="cvv" placeholder="123" value="639" maxlength="3">
+                                    <div class="error-message" id="cvv-error">Please enter a valid CVV</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Cardholder Name</label>
+                                <input type="text" class="form-input" id="cardholder-name" placeholder="Enter cardholder name" value="JAMES MULAUZI">
+                                <div class="error-message" id="name-error">Please enter cardholder name</div>
+                            </div>
+                        </div>
+                        
+                        <div id="mobile-form" style="display: none;">
+                            <div class="mobile-payment-info">
+                                <h3 class="instructions-title">Payment Instructions</h3>
+                                <p>1. Open your mobile money app (EcoCash/InnBucks/One Money)</p>
+                                <p>2. Send payment to the following number:</p>
+                                <div class="mobile-number">0786497932</div>
+                                <p>3. Use your order ID as reference: <strong id="order-ref">ORD-78342</strong></p>
+                                <p>4. After sending payment, return here to complete the process</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Your Mobile Number</label>
+                                <input type="tel" class="form-input" id="mobile-number" placeholder="Enter your mobile number">
+                                <div class="error-message" id="mobile-error">Please enter a valid mobile number</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Transaction Reference</label>
+                                <input type="text" class="form-input" id="transaction-ref" placeholder="Enter transaction reference from your payment">
+                                <div class="error-message" id="ref-error">Please enter your transaction reference</div>
+                            </div>
+                        </div>
+                        
+                        <div id="paynow-form" style="display: none;">
+                            <div class="mobile-payment-info">
+                                <h3 class="instructions-title">PayNow Instructions</h3>
+                                <p>1. Scan the QR code below with your banking app</p>
+                                <p style="text-align: center; margin: 20px 0;">
+                                    <i class="fas fa-qrcode" style="font-size: 120px; color: #333;"></i>
+                                </p>
+                                <p>2. Or send payment directly to:</p>
+                                <div class="mobile-number">0786497932</div>
+                                <p>3. Use reference: <strong id="paynow-ref">ORD-78342</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="instructions">
+                            <h3 class="instructions-title">Important Information</h3>
+                            <p>• All payments are processed securely with encryption</p>
+                            <p>• Your card details are never stored on our servers</p>
+                            <p>• A receipt will be sent to your email after payment</p>
+                            <p>• For mobile money payments, use the reference provided</p>
+                            <p>• All payments are directed to: <strong>0786497932</strong></p>
+                        </div>
+                        
+                        <button class="payment-submit-btn" id="pay-button">
+                            <i class="fas fa-lock"></i> Complete Secure Payment
+                        </button>
+                        
+                        <div class="secure-notice">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>256-bit SSL Encryption • PCI DSS Compliant</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-summary">
+                    <h2 class="section-title">Order Summary</h2>
+                    
+                    <div id="payment-cart-items">
+                        <!-- Cart items will be dynamically added here -->
+                        <div class="summary-item">
+                            <span>Loading cart items...</span>
+                            <span>--</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span>Tax</span>
+                        <span id="payment-tax">$0.00</span>
+                    </div>
+                    
+                    <div class="summary-item summary-total">
+                        <span>Total Amount</span>
+                        <span id="payment-total">$0.00</span>
+                    </div>
+                    
+                    <div class="integration-info">
+                        <h3><i class="fas fa-database"></i> Integration Details</h3>
+                        <ul>
+                            <li>Order created before payment processing</li>
+                            <li>Payment activities logged to database</li>
+                            <li>Seamless cart & checkout integration</li>
+                            <li>Real-time payment status tracking</li>
+                            <li>Automated receipt generation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instructions" style="margin-top: 25px;">
+                        <h3 class="instructions-title">Payment Processing</h3>
+                        <p>• All payments are directed to: <strong>0786497932</strong></p>
+                        <p>• Orders are created before payment processing begins</p>
+                        <p>• Payment confirmation is instant for card payments</p>
+                        <p>• Mobile money payments may take 1-2 minutes to verify</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Success Message -->
+    <div class="payment-overlay" id="paymentOverlay"></div>
+    
+    <div class="payment-success-message" id="paymentSuccessMessage">
+        <div class="payment-success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Payment Successful!</h2>
+        <p>Your payment of <strong id="payment-amount">$0.00</strong> has been processed successfully.</p>
+        <p>Transaction ID: <strong id="transaction-id">TXN-984732</strong></p>
+        <p>Order <strong id="success-order-id">ORD-78342</strong> is now confirmed and being processed.</p>
+        <p>A receipt has been sent to your email.</p>
+        <button class="payment-submit-btn" id="close-payment-success" style="margin-top: 25px;">
+            Continue Shopping
+        </button>
+    </div>
+
+    <!-- Feedback Page -->
+    <section id="feedback" class="page-section">
+        <section class="feedback-hero">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        </section>
+
+        <section class="feedback-content">
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <p>Have questions about our services or need assistance? Fill out the form below and our team will get back to you promptly.</p>
+                
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="rating-group">
+                        <label>Rate Your Experience</label>
+                        <div class="rating-stars">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <!-- Website Rating Section -->
+                <div class="website-rating">
+                    <h3>Our Website Rating</h3>
+                    <div class="website-rating-stars">
+                        ★★★★★☆
+                    </div>
+                    <p>Rated 5 out of 6 stars by our users</p>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Our Location</h3>
+                            <p>6 Kelvin North, Graniteside, Harare</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Phone Number</h3>
+                            <p>+26371 227 6577 / +26378 649 7932</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email Address</h3>
+                            <p>jamesmulauzi47@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <p>Map of our location would be displayed here</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Help Desk Page -->
+    <section id="help" class="page-section">
+        <section class="help-hero">
+            <h1>HELP DESK</h1>
+            <p>Need assistance? We're here to help.</p>
+        </section>
+
+        <section class="help-content">
+            <div class="help-intro">
+                <h2>How Can We Help You?</h2>
+                <p>At JM Motors, our Help Desk is dedicated to providing fast and reliable support for all your automotive service needs.</p>
+            </div>
+
+            <div class="assistance-section">
+                <h2>What We Assist With</h2>
+                <div class="assistance-grid">
+                    <div class="assistance-card">
+                        <div class="assistance-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Service Support</h3>
+                        <p>Questions about engine overhaul, diagnostics, suspension, brakes, clutch, oil changes, or respraying.</p>
+                    </div>
+                    <div class="assistance-card">
+                        <div class="assistance-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3>Booking Help</h3>
+                        <p>Assistance with scheduling or modifying appointments for our automotive services.</p>
+                    </div>
+                    <div class="assistance-card">
+                        <div class="assistance-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3>Website & Account Support</h3>
+                        <p>Login issues, navigation help, or profile updates on our website.</p>
+                    </div>
+                    <div class="assistance-card">
+                        <div class="assistance-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Orders & Payments</h3>
+                        <p>Inquiries about orders, invoices, or payment options for parts and services.</p>
+                    </div>
+                    <div class="assistance-card">
+                        <div class="assistance-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>General Feedback</h3>
+                        <p>Share suggestions, compliments, or concerns about our services and products.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Get In Touch</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Address</h3>
+                        <p>6 Kelvin North, Graniteside, Harare</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>jamesmulauzi47@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+263 71 227 6577<br>+263 78 649 7932</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="response-time">
+                <h2>Response Time</h2>
+                <p>We aim to respond to all queries within <span class="highlight">24 hours</span> during business days.</p>
+            </div>
+
+            <div class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I schedule a service appointment?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        You can schedule an appointment by calling us directly, using our online booking system, or visiting our service center during business hours.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        We accept Visa, MasterCard, EcoCash, InnBucks, One Money, and PayNow. All payments are securely processed and directed to our payment number: 0786497932.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you offer warranties on your services?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer warranties on both parts and labor. The specific warranty period depends on the service performed and will be detailed in your service agreement.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does a typical engine overhaul take?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Engine overhauls typically take 3-5 business days, depending on the extent of work needed and parts availability. We'll provide a more accurate timeline after initial diagnostics.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I get a cost estimate before authorizing work?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely. We provide detailed cost estimates before beginning any work, and we'll contact you for approval if additional repairs are needed beyond the initial estimate.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Your Shopping Cart</h2>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total Items:</span>
+                    <span id="cartTotal">0</span>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-content">
+            <div class="admin-header">
+                <h2>Admin Panel</h2>
+                <button class="close-admin" id="closeAdmin">&times;</button>
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="openAdminTab('users')">Users</button>
+                <button class="admin-tab" onclick="openAdminTab('orders')">Orders</button>
+                <button class="admin-tab" onclick="openAdminTab('payments')">Payments</button>
+                <button class="admin-tab" onclick="openAdminTab('feedback')">Feedback</button>
+                <button class="admin-tab" onclick="openAdminTab('activities')">Activities</button>
+            </div>
+            
+            <div class="admin-tab-content active" id="usersTab">
+                <h3>Registered Users</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Registration Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTable">
+                        <!-- Users will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="admin-tab-content" id="ordersTab">
+                <h3>Product Orders</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Products</th>
+                            <th>Total Items</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTable">
+                        <!-- Orders will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="admin-tab-content" id="paymentsTab">
+                <h3>Payment Transactions</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Order ID</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentsTable">
+                        <!-- Payments will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="admin-tab-content" id="feedbackTab">
+                <h3>Customer Feedback</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Rating</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTable">
+                        <!-- Feedback will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="admin-tab-content" id="activitiesTab">
+                <h3>User Activities</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Activity</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activitiesTable">
+                        <!-- Activities will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 6 Kelvin North, Graniteside, Harare</p>
+                <p><i class="fas fa-envelope"></i> jamesmulauzi47@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +26371 227 6577 / +26378 649 7932</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('profile')">Profile</a>
+                <a onclick="showPage('about')">About</a>
+                <a onclick="showPage('payment')">Payment</a>
+                <a onclick="showPage('feedback')">Feedback</a>
+                <a onclick="showPage('help')">Help Desk</a>
+            </div>
+            <div class="footer-section">
+                <h3>Payment Methods</h3>
+                <p><i class="fab fa-cc-visa"></i> Visa Card</p>
+                <p><i class="fab fa-cc-mastercard"></i> Master Card</p>
+                <p><i class="fas fa-mobile-alt"></i> EcoCash</p>
+                <p><i class="fas fa-wallet"></i> InnBucks</p>
+                <p><i class="fas fa-money-bill-wave"></i> One Money</p>
+                <p><i class="fas fa-qrcode"></i> PayNow</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay connected with us on social media</p>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 JM Motors. All rights reserved. | Secure Payment System Integrated</p>
+        </div>
+    </footer>
+
+    <script>
+        // Database simulation (in a real application, this would be server-side)
+        let database = {
+            users: [],
+            orders: [],
+            payments: [],
+            feedback: [],
+            activities: []
+        };
+
+        // WhatsApp integration functions
+        function joinWhatsAppChannel() {
+            window.open('https://chat.whatsapp.com/I0a9YRBvvUGHFOEUSvvUuJ', '_blank');
+        }
+
+        function joinWhatsAppGroup() {
+            window.open('https://chat.whatsapp.com/I0a9YRBvvUGHFOEUSvvUuJ', '_blank');
+        }
+
+        // Close WhatsApp banner
+        document.getElementById('closeBanner').addEventListener('click', function() {
+            document.getElementById('whatsappBanner').style.display = 'none';
+        });
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // If payment page is shown, update the cart summary
+            if (pageId === 'payment') {
+                updatePaymentCartSummary();
+            }
+        }
+
+        // Function to go to payment page from cart
+        function goToPayment() {
+            // Close cart modal
+            cartModal.style.display = 'none';
+            // Show payment page
+            showPage('payment');
+        }
+
+        // Update payment page cart summary
+        function updatePaymentCartSummary() {
+            const paymentCartItems = document.getElementById('payment-cart-items');
+            const paymentTotal = document.getElementById('payment-total');
+            const paymentTax = document.getElementById('payment-tax');
+            
+            if (cart.length === 0) {
+                paymentCartItems.innerHTML = '<div class="summary-item"><span>Your cart is empty</span><span>$0.00</span></div>';
+                paymentTotal.textContent = '$0.00';
+                paymentTax.textContent = '$0.00';
+                return;
+            }
+            
+            // Calculate subtotal
+            let subtotal = 0;
+            cart.forEach(item => {
+                const price = getProductPrice(item.id);
+                subtotal += price * item.quantity;
+            });
+            
+            // Calculate tax (15%)
+            const tax = subtotal * 0.15;
+            const total = subtotal + tax;
+            
+            // Update cart items display
+            paymentCartItems.innerHTML = '';
+            cart.forEach(item => {
+                const price = getProductPrice(item.id);
+                const itemTotal = price * item.quantity;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                `;
+                paymentCartItems.appendChild(itemElement);
+            });
+            
+            // Update totals
+            paymentTax.textContent = `$${tax.toFixed(2)}`;
+            paymentTotal.textContent = `$${total.toFixed(2)}`;
+            
+            // Update payment success message amount
+            document.getElementById('payment-amount').textContent = `$${total.toFixed(2)}`;
+            
+            // Generate order reference
+            const orderId = `ORD-${Math.floor(10000 + Math.random() * 90000)}`;
+            document.getElementById('order-ref').textContent = orderId;
+            document.getElementById('paynow-ref').textContent = orderId;
+            document.getElementById('success-order-id').textContent = orderId;
+            
+            // Generate transaction ID
+            const transactionId = `TXN-${Math.floor(100000 + Math.random() * 900000)}`;
+            document.getElementById('transaction-id').textContent = transactionId;
+        }
+
+        // Helper function to get product price
+        function getProductPrice(id) {
+            const prices = {
+                '1': 89.99, // Brake Components
+                '2': 129.99, // Tyres
+                '3': 79.99, // Suspension Parts
+                '4': 34.99, // Engine Filters
+                '5': 29.99, // Lubricants
+                '6': 149.99, // Engine Parts
+                '7': 99.99, // Body Parts
+                '8': 119.99  // Transmission Parts
+            };
+            return prices[id] || 49.99;
+        }
+
+        // PAYMENT SYSTEM FUNCTIONALITY
+        // DOM elements for payment system
+        const paymentMethods = document.querySelectorAll('.method');
+        const cardForm = document.getElementById('card-form');
+        const mobileForm = document.getElementById('mobile-form');
+        const paynowForm = document.getElementById('paynow-form');
+        const payButton = document.getElementById('pay-button');
+        const paymentSuccessMessage = document.getElementById('paymentSuccessMessage');
+        const paymentOverlay = document.getElementById('paymentOverlay');
+        const closePaymentSuccess = document.getElementById('close-payment-success');
+        
+        // Form validation elements
+        const cardNumberInput = document.getElementById('card-number');
+        const expiryInput = document.getElementById('expiry-date');
+        const cvvInput = document.getElementById('cvv');
+        const cardholderInput = document.getElementById('cardholder-name');
+        const mobileInput = document.getElementById('mobile-number');
+        const transactionRefInput = document.getElementById('transaction-ref');
+        
+        // Error message elements
+        const cardNumberError = document.getElementById('card-number-error');
+        const expiryError = document.getElementById('expiry-error');
+        const cvvError = document.getElementById('cvv-error');
+        const nameError = document.getElementById('name-error');
+        const mobileError = document.getElementById('mobile-error');
+        const refError = document.getElementById('ref-error');
+        
+        // Current selected payment method
+        let selectedMethod = 'card';
+        
+        // Payment method selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove active class from all methods
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                // Add active class to clicked method
+                this.classList.add('active');
+                
+                // Get the selected method
+                selectedMethod = this.getAttribute('data-method');
+                
+                // Show the appropriate form
+                cardForm.style.display = 'none';
+                mobileForm.style.display = 'none';
+                paynowForm.style.display = 'none';
+                
+                if (selectedMethod === 'card') {
+                    cardForm.style.display = 'block';
+                    payButton.innerHTML = '<i class="fas fa-lock"></i> Complete Secure Payment';
+                } else if (selectedMethod === 'paynow') {
+                    paynowForm.style.display = 'block';
+                    payButton.innerHTML = '<i class="fas fa-qrcode"></i> Confirm PayNow Payment';
+                } else {
+                    mobileForm.style.display = 'block';
+                    let methodName = this.querySelector('.method-name').textContent;
+                    payButton.innerHTML = `<i class="fas fa-mobile-alt"></i> Confirm ${methodName} Payment`;
+                }
+            });
+        });
+        
+        // Format card number with spaces
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue.substring(0, 19);
+        });
+        
+        // Format expiry date
+        expiryInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length >= 2) {
+                e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            } else {
+                e.target.value = value;
+            }
+        });
+        
+        // Form validation functions
+        function validateCardNumber() {
+            const cardNumber = cardNumberInput.value.replace(/\s/g, '');
+            if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                cardNumberError.style.display = 'block';
+                return false;
+            }
+            cardNumberError.style.display = 'none';
+            return true;
+        }
+        
+        function validateExpiry() {
+            const expiry = expiryInput.value;
+            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            
+            if (!regex.test(expiry)) {
+                expiryError.style.display = 'block';
+                return false;
+            }
+            
+            // Check if card is expired
+            const [month, year] = expiry.split('/');
+            const currentYear = new Date().getFullYear() % 100;
+            const currentMonth = new Date().getMonth() + 1;
+            
+            if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+                expiryError.textContent = 'Card has expired';
+                expiryError.style.display = 'block';
+                return false;
+            }
+            
+            expiryError.style.display = 'none';
+            return true;
+        }
+        
+        function validateCVV() {
+            const cvv = cvvInput.value;
+            if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+                cvvError.style.display = 'block';
+                return false;
+            }
+            cvvError.style.display = 'none';
+            return true;
+        }
+        
+        function validateCardholder() {
+            if (cardholderInput.value.trim().length < 3) {
+                nameError.style.display = 'block';
+                return false;
+            }
+            nameError.style.display = 'none';
+            return true;
+        }
+        
+        function validateMobile() {
+            const mobile = mobileInput.value.trim();
+            if (mobile.length < 9 || !/^[0-9+\-\s]+$/.test(mobile)) {
+                mobileError.style.display = 'block';
+                return false;
+            }
+            mobileError.style.display = 'none';
+            return true;
+        }
+        
+        function validateTransactionRef() {
+            const ref = transactionRefInput.value.trim();
+            if (ref.length < 3) {
+                refError.style.display = 'block';
+                return false;
+            }
+            refError.style.display = 'none';
+            return true;
+        }
+        
+        // Validate form based on selected method
+        function validatePaymentForm() {
+            if (selectedMethod === 'card') {
+                return validateCardNumber() && validateExpiry() && validateCVV() && validateCardholder();
+            } else if (selectedMethod === 'paynow') {
+                return true; // PayNow doesn't require form validation
+            } else {
+                return validateMobile() && validateTransactionRef();
+            }
+        }
+        
+        // Payment button click handler
+        payButton.addEventListener('click', function() {
+            // First check if cart is empty
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items to your cart before proceeding to payment.');
+                showPage('home');
+                return;
+            }
+            
+            if (!validatePaymentForm()) {
+                return;
+            }
+            
+            // Simulate payment processing
+            payButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+            payButton.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(function() {
+                // Calculate total
+                let subtotal = 0;
+                cart.forEach(item => {
+                    const price = getProductPrice(item.id);
+                    subtotal += price * item.quantity;
+                });
+                const tax = subtotal * 0.15;
+                const total = subtotal + tax;
+                
+                // Create order in database
+                const orderId = document.getElementById('success-order-id').textContent;
+                const transactionId = document.getElementById('transaction-id').textContent;
+                
+                const order = {
+                    id: orderId,
+                    customer: userData ? userData.fullName : 'Guest',
+                    products: [...cart],
+                    totalAmount: total,
+                    paymentMethod: selectedMethod,
+                    status: 'completed',
+                    date: new Date().toLocaleString()
+                };
+                
+                // Add order to database
+                database.orders.push(order);
+                
+                // Create payment record
+                const payment = {
+                    id: transactionId,
+                    orderId: orderId,
+                    amount: total,
+                    method: selectedMethod,
+                    cardNumber: selectedMethod === 'card' ? cardNumberInput.value : null,
+                    mobileNumber: selectedMethod !== 'card' ? mobileInput.value : null,
+                    status: 'completed',
+                    date: new Date().toLocaleString(),
+                    recipient: '0786497932'
+                };
+                
+                database.payments.push(payment);
+                
+                // Log activity
+                if (userData) {
+                    database.activities.push({
+                        id: database.activities.length + 1,
+                        user: userData.fullName,
+                        activity: `Completed payment of $${total.toFixed(2)} via ${selectedMethod} for order ${orderId}`,
+                        date: new Date().toLocaleString()
+                    });
+                }
+                
+                // Send email notification (simulated)
+                const emailBody = `New Payment Received:\n\nOrder ID: ${orderId}\nTransaction ID: ${transactionId}\nCustomer: ${userData ? userData.fullName : 'Guest'}\nAmount: $${total.toFixed(2)}\nPayment Method: ${selectedMethod}\nPayment to: 0786497932\n\nDate: ${new Date().toLocaleString()}`;
+                console.log('Sending payment confirmation to jamesmulauzi47@gmail.com');
+                console.log('Email content:', emailBody);
+                
+                // Show success message
+                paymentSuccessMessage.style.display = 'block';
+                paymentOverlay.style.display = 'block';
+                
+                // Reset button
+                payButton.innerHTML = '<i class="fas fa-lock"></i> Complete Secure Payment';
+                payButton.disabled = false;
+                
+                // Clear cart after successful payment
+                cart = [];
+                updateCartCount();
+                updateCartDisplay();
+                updatePaymentCartSummary();
+                
+                // Log payment to console for demo
+                console.log('Payment logged to database:');
+                console.log(`Method: ${selectedMethod}`);
+                console.log(`Amount: $${total.toFixed(2)}`);
+                console.log(`Order ID: ${orderId}`);
+                console.log(`Transaction ID: ${transactionId}`);
+                console.log(`Payment directed to: 0786497932`);
+            }, 2000);
+        });
+        
+        // Close payment success message
+        closePaymentSuccess.addEventListener('click', function() {
+            paymentSuccessMessage.style.display = 'none';
+            paymentOverlay.style.display = 'none';
+            // Go back to home page
+            showPage('home');
+        });
+        
+        // Close success message when clicking overlay
+        paymentOverlay.addEventListener('click', function() {
+            paymentSuccessMessage.style.display = 'none';
+            paymentOverlay.style.display = 'none';
+        });
+        
+        // Real-time validation for card inputs
+        cardNumberInput.addEventListener('blur', validateCardNumber);
+        expiryInput.addEventListener('blur', validateExpiry);
+        cvvInput.addEventListener('blur', validateCVV);
+        cardholderInput.addEventListener('blur', validateCardholder);
+        mobileInput.addEventListener('blur', validateMobile);
+        transactionRefInput.addEventListener('blur', validateTransactionRef);
+        
+        // Initialize with card validation
+        validateCardNumber();
+        validateExpiry();
+        validateCVV();
+        validateCardholder();
+
+        // EXISTING CART FUNCTIONALITY
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        // User registration data (simplified for demo)
+        let userData = null;
+
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+            updateCartDisplay();
+        });
+
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        // Add to cart functionality
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                
+                addToCart(id, name);
+            });
+        });
+
+        // Add item to cart
+        function addToCart(id, name) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    quantity: 1
+                });
+            }
+            
+            // Log activity if user is logged in
+            if (userData) {
+                database.activities.push({
+                    id: database.activities.length + 1,
+                    user: userData.fullName,
+                    activity: `Added to cart: ${name}`,
+                    date: new Date().toLocaleString()
+                });
+            }
+            
+            updateCartCount();
+            updateCartDisplay();
+            
+            // Show confirmation
+            alert(`Added "${name}" to your cart!`);
+        }
+
+        // Update cart count in header
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Update cart display in modal
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                cartTotal.textContent = '0';
+                return;
+            }
+            
+            let totalItems = 0;
+            
+            cart.forEach(item => {
+                totalItems += item.quantity;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                    </div>
+                    <button class="remove-item" data-id="${item.id}">&times;</button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartTotal.textContent = totalItems;
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    decreaseQuantity(id);
+                });
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    increaseQuantity(id);
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+        }
+
+        // Increase item quantity
+        function increaseQuantity(id) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += 1;
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Decrease item quantity
+        function decreaseQuantity(id) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    removeFromCart(id);
+                    return;
+                }
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            const item = cart.find(item => item.id === id);
+            cart = cart.filter(item => item.id !== id);
+            
+            // Log activity if user is logged in
+            if (userData && item) {
+                database.activities.push({
+                    id: database.activities.length + 1,
+                    user: userData.fullName,
+                    activity: `Removed from cart: ${item.name}`,
+                    date: new Date().toLocaleString()
+                });
+            }
+            
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        // Checkout functionality - updated to go to payment page
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // Close cart modal
+            cartModal.style.display = 'none';
+            // Go to payment page
+            showPage('payment');
+        });
+
+        // Form submission handling
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const rating = document.querySelector('input[name="rating"]:checked');
+            
+            // Check if rating is provided
+            if (!rating) {
+                alert('Please provide a rating!');
+                return;
+            }
+            
+            // Add feedback to database
+            const feedback = {
+                id: database.feedback.length + 1,
+                name,
+                email,
+                subject,
+                rating: rating.value,
+                message,
+                date: new Date().toLocaleString()
+            };
+            
+            database.feedback.push(feedback);
+            
+            // Log activity
+            database.activities.push({
+                id: database.activities.length + 1,
+                user: name,
+                activity: `Submitted feedback: ${subject}`,
+                date: new Date().toLocaleString()
+            });
+            
+            // Send email to jamesmulauzi47@gmail.com
+            const emailBody = `New Feedback Received:\n\nFrom: ${name} (${email})\nSubject: ${subject}\nRating: ${rating.value} stars\nMessage: ${message}\n\nDate: ${feedback.date}`;
+            
+            // In a real implementation, you would send this to a server
+            // For this demo, we'll simulate sending an email
+            console.log('Sending email to jamesmulauzi47@gmail.com');
+            console.log('Email content:', emailBody);
+            
+            alert(`Thank you for your message, ${name}! We have received your feedback and will respond to ${email} as soon as possible. A copy has been sent to jamesmulauzi47@gmail.com.`);
+            
+            // Reset the form
+            document.getElementById('feedbackForm').reset();
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+                
+                const toggle = question.querySelector('.faq-toggle');
+                toggle.textContent = faqItem.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // Admin Panel Functionality
+        const adminPanel = document.getElementById('adminPanel');
+        const closeAdmin = document.getElementById('closeAdmin');
+
+        function openAdminPanel() {
+            const password = prompt('Please enter admin password:');
+            if (password === 'Tracker01') {
+                adminPanel.style.display = 'flex';
+                updateAdminPanel();
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        closeAdmin.addEventListener('click', () => {
+            adminPanel.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === adminPanel) {
+                adminPanel.style.display = 'none';
+            }
+        });
+
+        function openAdminTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.admin-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function updateAdminPanel() {
+            // Update users table
+            const usersTable = document.getElementById('usersTable');
+            usersTable.innerHTML = '';
+            database.users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.fullName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.registrationDate}</td>
+                `;
+                usersTable.appendChild(row);
+            });
+            
+            // Update orders table
+            const ordersTable = document.getElementById('ordersTable');
+            ordersTable.innerHTML = '';
+            database.orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.products.map(p => p.name).join(', ')}</td>
+                    <td>${order.totalItems}</td>
+                    <td>${order.date}</td>
+                `;
+                ordersTable.appendChild(row);
+            });
+            
+            // Update payments table
+            const paymentsTable = document.getElementById('paymentsTable');
+            paymentsTable.innerHTML = '';
+            database.payments.forEach(payment => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${payment.id}</td>
+                    <td>${payment.orderId}</td>
+                    <td>$${payment.amount.toFixed(2)}</td>
+                    <td>${payment.method}</td>
+                    <td>${payment.status}</td>
+                    <td>${payment.date}</td>
+                `;
+                paymentsTable.appendChild(row);
+            });
+            
+            // Update feedback table
+            const feedbackTable = document.getElementById('feedbackTable');
+            feedbackTable.innerHTML = '';
+            database.feedback.forEach(fb => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${fb.id}</td>
+                    <td>${fb.name}</td>
+                    <td>${fb.email}</td>
+                    <td>${fb.subject}</td>
+                    <td>${fb.rating} stars</td>
+                    <td>${fb.date}</td>
+                `;
+                feedbackTable.appendChild(row);
+            });
+            
+            // Update activities table
+            const activitiesTable = document.getElementById('activitiesTable');
+            activitiesTable.innerHTML = '';
+            database.activities.forEach(activity => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${activity.id}</td>
+                    <td>${activity.user}</td>
+                    <td>${activity.activity}</td>
+                    <td>${activity.date}</td>
+                `;
+                activitiesTable.appendChild(row);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set home as active page
+            showPage('home');
+            
+            // Initialize cart count
+            updateCartCount();
+            
+            // Initialize payment cart summary
+            updatePaymentCartSummary();
+        });
+    </script>
+</body>
+</html>
